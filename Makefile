@@ -1,16 +1,20 @@
 CXXFLAGS=-std=c++14
 
-main: main.o test-ascii.o
-				g++ -o main main.o test-ascii.o
+#changed main to compile indent.cpp, and related targets 
+main: indent.o bad-code.cpp
+	g++ -o main indent.o 
 
 
 debug: CXXFLAGS:=$(CXXFLAGS) -g
 debug:main
 
-main.o: main.cpp test-ascii.h
-				g++ $(CXXFLAGS) -c main.cpp
+indent.o: indent.cpp 
+	g++ $(CXXFLAGS) -c indent.cpp
 
-numbers.o: test-ascii.cpp test-ascii.h
-				g++ $(CXXFLAGS) -c test-ascii.cpp
+# unnecessary target
+# numbers.o: test-ascii.cpp test-ascii.h
+# 	g++ $(CXXFLAGS) -c test-ascii.cpp
+
+
 clean:
-				rm -f main.o test-ascii.o tests.o main tests
+	rm -f indent.o  main indent a.out

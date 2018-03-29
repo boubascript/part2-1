@@ -7,10 +7,11 @@ string removeLeadingSpaces(string input){
   string ret_str = "";
   bool found = false;
   for (int i = 0 ; i < input.length() ; i++){
-    if (found == true){
+    if (found ) { //== true){  found is already boolean
       ret_str += input[i];
     }
-    else if (found == false && isspace(input[i]) == false){
+    // no need for ==false, use ! instead
+    else if (!isspace(input[i])){ // first half of condition, found == false, is redundant
       ret_str += input[i];
       found = true;
     }
@@ -18,10 +19,11 @@ string removeLeadingSpaces(string input){
   return ret_str;
 }
 
-string unindent_code(string line){
-  return removeLeadingSpaces(line);
+//unnecessary function, just use the first function itself
+// string unindent_code(string line){
+//   return removeLeadingSpaces(line);
 
-}
+// }
 
 int countChar(string line, char c){
   int ret_num = 0;
@@ -35,19 +37,19 @@ int countChar(string line, char c){
 
 }
 
-
+//the code in this function could just be put in main instead
 string indent_code(){
   string line;
   string ret_str="";
   int counter = 0;
   while (getline(cin,line)){
-    line = unindent_code(line);
-    counter -= countChar(line, '}');
+    line = removeLeadingSpaces(line);
+    counter -= countChar(line, '}');   //smart way of accounting for lines beginning with }
     for (int i = 0; i < counter ; i ++){
       ret_str += '\t';
     }
     ret_str += line + "\n";
-    counter += countChar(line, '{');
+    counter += countChar(line, '{'); 
   }
   return ret_str;
 }

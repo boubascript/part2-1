@@ -1,9 +1,8 @@
 #include <iostream>
 using namespace std;
 
-
-
-
+//Boubacar - this file isn't needed because the function is written directly in indent.cpp,
+// This entire file can be deleted 
 
 string removeLeadingSpaces(string input){
   string ret_str = "";
